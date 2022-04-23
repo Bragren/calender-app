@@ -9,15 +9,9 @@ var currentDate = function() {
       
 }
 
-
-
-var currentTime = +moment().format("HH");
-// console.log(currentTime)
-
 const p = document.querySelector("#currentDay");
 
 p.appendChild(currentDate("home"));
-
 
 
 // variables for grabbing elements
@@ -177,7 +171,26 @@ function loadTask5() {
 }
 
 // functions to add color based on time
+function addColor() {
+    var currentTime = moment().hour();
+    
+    $(".row").each(function(){
+        var blockHour = parseInt($(this).attr("id"));
+        // console.log(blockHour)
+        if (blockHour < currentTime) {
+            $(this).addClass("past");
+        } else if(blockHour === currentTime){
+            $(this).removeClass("past");
+            $(this).addClass("present");
+        } else {
+            $(this).removeClass("past");
+            $(this).removeClass("present");
+            $(this).addClass("future");
+        }
+    })
+}
 
+addColor()
 
 loadTask9()
 loadTask10()
@@ -188,3 +201,5 @@ loadTask2()
 loadTask3()
 loadTask4()
 loadTask5()
+
+// parseInt
